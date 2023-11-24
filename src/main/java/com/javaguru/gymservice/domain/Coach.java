@@ -1,6 +1,6 @@
-package com.javaguru.gymserviceapi.domain;
+package com.javaguru.gymservice.domain;
 
-import com.javaguru.gymserviceapi.domain.extra.AbstractBaseEntity;
+import com.javaguru.gymservice.domain.extra.AbstractBaseEntity;
 import lombok.*;
 
 import javax.persistence.Column;

@@ -1,4 +1,4 @@
-package com.javaguru.gymserviceapi.constants;
+package com.javaguru.gymservice.constants;
 
 /**
  * @author: adewaleijalana

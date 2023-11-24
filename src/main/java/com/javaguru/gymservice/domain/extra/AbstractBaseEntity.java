@@ -1,4 +1,4 @@
-package com.javaguru.gymserviceapi.domain.extra;
+package com.javaguru.gymservice.domain.extra;
 
 import lombok.Getter;
 import lombok.Setter;
