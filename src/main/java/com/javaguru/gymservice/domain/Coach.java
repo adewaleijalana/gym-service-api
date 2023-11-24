@@ -44,6 +44,9 @@ public class Coach extends AbstractBaseEntity implements Serializable {
     @OneToMany(mappedBy = "coach")
     private Set<ExerciseSession> exerciseSessionSet;
 
+    @OneToMany(mappedBy = "coach")
+    private Set<GymCoach> gymCoachSet;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

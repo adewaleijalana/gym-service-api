@@ -34,6 +34,10 @@ public class ExerciseSession extends AbstractBaseEntity implements Serializable 
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @ManyToOne
+    @JoinColumn(name = "gym_id")
+    private Gym gym;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "exercise_day")
     private ExerciseDays exerciseDay;
