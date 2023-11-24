@@ -1,5 +1,6 @@
 package com.javaguru.gymservice.domain.extra;
 
+import com.javaguru.gymservice.util.AppUtil;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
@@ -13,6 +14,13 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * @author: adewaleijalana
+ * @email: adewaleijalana@gmail.com
+ * @date: 11/24/23
+ * @time: 2:10PM
+ **/
+
 @Getter
 @Setter
 @MappedSuperclass
@@ -21,9 +29,8 @@ public class AbstractBaseEntity implements Serializable {
     private static final long serialVersionUID = -8976037087499915098L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    protected Long id;
+    protected String id;
 
     @Version
     protected Long version = 0L;
@@ -43,6 +50,13 @@ public class AbstractBaseEntity implements Serializable {
     @LastModifiedBy
     @Column(name = "last_modified_by", nullable = false)
     protected String lastModifiedBy = "SYSTEM";
+
+    @PrePersist
+    public void abstractPrePersist() {
+        if (AppUtil.INSTANCE.stringIsNullOrEmpty(id)) {
+            id = ID.generateUUIDString();
+        }
+    }
 
     @Override
     public boolean equals(Object o) {

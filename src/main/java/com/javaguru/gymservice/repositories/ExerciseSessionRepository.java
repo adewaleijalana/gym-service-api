@@ -11,5 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  **/
 
 
-public interface ExerciseSessionRepository extends JpaRepository<ExerciseSession, Long> {
+public interface ExerciseSessionRepository extends JpaRepository<ExerciseSession, String> {
 }

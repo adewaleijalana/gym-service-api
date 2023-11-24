@@ -1,5 +1,5 @@
 create table `coach` (
-    `id` bigint not null AUTO_INCREMENT primary key,
+    `id` varchar(255) not null primary key,
     `first_name` varchar(255),
     `last_name` varchar(255),
     `email` varchar(255),
@@ -12,7 +12,7 @@ create table `coach` (
 );
 
 create table `member` (
-     `id` bigint not null AUTO_INCREMENT primary key,
+     `id` varchar(255) not null primary key,
      `first_name` varchar(255),
      `last_name` varchar(255),
      `email` varchar(255),
@@ -25,7 +25,7 @@ create table `member` (
 );
 
 create table `exercise_session` (
-     `id` bigint not null AUTO_INCREMENT primary key,
+     `id` varchar(255) not null primary key,
      `coach_id` bigint,
      foreign key (coach_id) references coach(id),
      `member_id` bigint,
