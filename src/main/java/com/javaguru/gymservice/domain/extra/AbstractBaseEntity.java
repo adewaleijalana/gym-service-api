@@ -2,18 +2,20 @@ package com.javaguru.gymservice.domain.extra;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Version;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
 @Setter
+@MappedSuperclass
 public class AbstractBaseEntity implements Serializable {
 
     private static final long serialVersionUID = -8976037087499915098L;
@@ -21,26 +23,26 @@ public class AbstractBaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    protected Long id;
 
     @Version
-    private Long version = 0L;
+    protected Long version = 0L;
 
     @CreatedDate
     @Column(name = "created_date")
-    private LocalDateTime createdDate;
+    protected LocalDateTime createdDate;
 
     @CreatedBy
     @Column(name = "created_by")
-    private String createdBy = "SYSTEM";
+    protected String createdBy = "SYSTEM";
 
     @LastModifiedDate
     @Column(name = "last_modified_date")
-    private LocalDateTime lastModifiedDate;
+    protected LocalDateTime lastModifiedDate;
 
     @LastModifiedBy
     @Column(name = "last_modified_by", nullable = false)
-    private String lastModifiedBy = "SYSTEM";
+    protected String lastModifiedBy = "SYSTEM";
 
     @Override
     public boolean equals(Object o) {

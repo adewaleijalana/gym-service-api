@@ -32,4 +32,4 @@ spring:
     password:
     locations: classpath:db/migration
     baseline-on-migrate: true
-    enabled: false
+#    enabled: false
