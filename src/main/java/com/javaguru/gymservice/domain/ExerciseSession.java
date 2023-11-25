@@ -1,6 +1,7 @@
 package com.javaguru.gymservice.domain;
 
 import com.javaguru.gymservice.constants.ExerciseDays;
+import com.javaguru.gymservice.constants.SessionStatus;
 import com.javaguru.gymservice.domain.extra.AbstractBaseEntity;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -43,6 +44,10 @@ public class ExerciseSession extends AbstractBaseEntity implements Serializable 
     @Enumerated(EnumType.STRING)
     @Column(name = "exercise_day")
     private ExerciseDays exerciseDay;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private SessionStatus status;
 
     @Override
     public boolean equals(Object o) {

@@ -56,6 +56,7 @@ create table `exercise_session` (
      `gym_id` varchar(255),
      foreign key (gym_id) references gym(id),
      `exercise_day` varchar (10),
+     `status` varchar (10) default 'ACTIVE',
      `created_by` varchar (255),
      `created_date` datetime(6),
      `last_modified_by` varchar (255),
