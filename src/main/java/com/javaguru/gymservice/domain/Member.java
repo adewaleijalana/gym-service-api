@@ -4,11 +4,9 @@ import com.javaguru.gymservice.domain.extra.AbstractBaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
@@ -25,6 +23,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "member")
+@EntityListeners(AuditingEntityListener.class)
 public class Member extends AbstractBaseEntity implements Serializable {
 
     private static final long serialVersionUID = -823745056307870947L;

@@ -3,6 +3,7 @@ package com.javaguru.gymservice.domain;
 import com.javaguru.gymservice.constants.ExerciseDays;
 import com.javaguru.gymservice.domain.extra.AbstractBaseEntity;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,6 +23,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "exercise_session")
+@EntityListeners(AuditingEntityListener.class)
 public class ExerciseSession extends AbstractBaseEntity implements Serializable {
 
     private static final long serialVersionUID = -3613736495798174054L;

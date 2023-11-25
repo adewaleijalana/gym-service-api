@@ -2,11 +2,9 @@ package com.javaguru.gymservice.domain;
 
 import com.javaguru.gymservice.domain.extra.AbstractBaseEntity;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
@@ -25,6 +23,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "coach")
+@EntityListeners(AuditingEntityListener.class)
 public class Coach extends AbstractBaseEntity implements Serializable {
 
     private static final long serialVersionUID = 7702825964214396020L;
