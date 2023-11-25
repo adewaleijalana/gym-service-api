@@ -1,5 +1,6 @@
 package com.javaguru.gymservice.service;
 
+import com.javaguru.gymservice.model.request.WeekDayRequest;
 import com.javaguru.gymservice.model.response.TrainingSessions;
 
 /**
@@ -12,4 +13,6 @@ import com.javaguru.gymservice.model.response.TrainingSessions;
 
 public interface TrainingSessionService {
     TrainingSessions getAllTrainingSession();
+
+    TrainingSessions getTrainingSessionForCoach(String coachId, WeekDayRequest weekDayRequest);
 }

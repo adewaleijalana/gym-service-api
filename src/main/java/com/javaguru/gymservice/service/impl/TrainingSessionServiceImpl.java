@@ -2,16 +2,20 @@ package com.javaguru.gymservice.service.impl;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.javaguru.gymservice.domain.Coach;
 import com.javaguru.gymservice.domain.ExerciseSession;
 import com.javaguru.gymservice.domain.Gym;
+import com.javaguru.gymservice.exception.ModelNotFoundException;
+import com.javaguru.gymservice.model.request.WeekDayRequest;
 import com.javaguru.gymservice.model.response.*;
+import com.javaguru.gymservice.repositories.CoachRepository;
 import com.javaguru.gymservice.repositories.ExerciseSessionRepository;
 import com.javaguru.gymservice.service.TrainingSessionService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author: adewaleijalana
@@ -20,16 +24,33 @@ import java.util.List;
  * @time: 2:46 AM
  **/
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class TrainingSessionServiceImpl implements TrainingSessionService {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+    private final CoachRepository coachRepository;
     private final ExerciseSessionRepository exerciseSessionRepository;
 
     @Override
     public TrainingSessions getAllTrainingSession() {
         List<ExerciseSession> exerciseSessions = exerciseSessionRepository.findAll();
+        return buildTrainingSessions(exerciseSessions);
+    }
+
+    @Override
+    public TrainingSessions getTrainingSessionForCoach(String coachId, WeekDayRequest weekDayRequest) {
+        log.info("coachId: {}; weekDayRequest: {}", coachId, gson.toJson(weekDayRequest));
+        Coach byId = coachRepository.findById(coachId)
+                .orElseThrow(() -> new ModelNotFoundException("Coach does not exist"));
+
+        List<ExerciseSession> byCoachAndExerciseDayIn = exerciseSessionRepository
+                .findByCoachAndExerciseDayIn(byId, Arrays.asList(weekDayRequest.getWeekDays()));
+        return buildTrainingSessions(byCoachAndExerciseDayIn);
+    }
+
+    private TrainingSessions buildTrainingSessions(List<ExerciseSession> exerciseSessions){
         List<SingleTrainingSession> trainingSessions = new ArrayList<>();
         exerciseSessions
                 .forEach(exerciseSession -> {
@@ -65,5 +86,6 @@ public class TrainingSessionServiceImpl implements TrainingSessionService {
         return TrainingSessions.builder()
                 .trainingSessions(trainingSessions)
                 .build();
+
     }
 }
