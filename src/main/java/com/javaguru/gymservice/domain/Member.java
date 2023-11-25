@@ -1,9 +1,7 @@
 package com.javaguru.gymservice.domain;
 
 import com.javaguru.gymservice.domain.extra.AbstractBaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -18,6 +16,8 @@ import java.util.Set;
  * @time: 2:10PM
  **/
 
+@Getter
+@Setter
 @Entity
 @Builder
 @NoArgsConstructor
