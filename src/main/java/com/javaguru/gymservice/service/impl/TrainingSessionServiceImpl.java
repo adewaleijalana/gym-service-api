@@ -2,9 +2,9 @@ package com.javaguru.gymservice.service.impl;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.javaguru.gymservice.constants.ExerciseDays;
 import com.javaguru.gymservice.domain.Coach;
 import com.javaguru.gymservice.domain.ExerciseSession;
-import com.javaguru.gymservice.domain.Gym;
 import com.javaguru.gymservice.exception.ModelNotFoundException;
 import com.javaguru.gymservice.model.request.WeekDayRequest;
 import com.javaguru.gymservice.model.response.*;
@@ -48,6 +48,16 @@ public class TrainingSessionServiceImpl implements TrainingSessionService {
         List<ExerciseSession> byCoachAndExerciseDayIn = exerciseSessionRepository
                 .findByCoachAndExerciseDayIn(byId, Arrays.asList(weekDayRequest.getWeekDays()));
         return buildTrainingSessions(byCoachAndExerciseDayIn);
+    }
+
+    @Override
+    public TrainingSessionCountResponse getTrainingSessionForOtherDaysThanWed() {
+        List<ExerciseDays> daysList = List.of(ExerciseDays.SAT, ExerciseDays.WED);
+        List<ExerciseSession> byExerciseDayIsNotIn = exerciseSessionRepository.findByExerciseDayIsNotIn(daysList);
+        return TrainingSessionCountResponse
+                .builder()
+                .trainingSessionCount(byExerciseDayIsNotIn.size())
+                .build();
     }
 
     private TrainingSessions buildTrainingSessions(List<ExerciseSession> exerciseSessions){

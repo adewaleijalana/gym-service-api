@@ -1,6 +1,7 @@
 package com.javaguru.gymservice.controllers;
 
 import com.javaguru.gymservice.model.request.WeekDayRequest;
+import com.javaguru.gymservice.model.response.TrainingSessionCountResponse;
 import com.javaguru.gymservice.model.response.TrainingSessions;
 import com.javaguru.gymservice.service.TrainingSessionService;
 import lombok.RequiredArgsConstructor;
@@ -40,5 +41,11 @@ public class TrainingSessionController {
                                                            @Valid @RequestBody WeekDayRequest weekDayRequest){
         return new ResponseEntity<>(trainingSessionService
                 .getTrainingSessionForCoach(coachId, weekDayRequest), HttpStatus.OK);
+    }
+
+    @GetMapping("/count")
+    ResponseEntity<TrainingSessionCountResponse> getAllTrainingSessionForOtherDaysThanWed(){
+        return new ResponseEntity<>(trainingSessionService
+                .getTrainingSessionForOtherDaysThanWed(), HttpStatus.OK);
     }
 }

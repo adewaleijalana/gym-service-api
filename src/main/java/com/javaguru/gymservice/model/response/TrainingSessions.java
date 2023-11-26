@@ -4,6 +4,7 @@ package com.javaguru.gymservice.model.response;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -11,7 +12,9 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TrainingSessions {
+public class TrainingSessions implements Serializable {
+
+    private static final long serialVersionUID = -3115908926715216234L;
 
     private List<SingleTrainingSession> trainingSessions;
 

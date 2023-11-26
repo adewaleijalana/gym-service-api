@@ -19,7 +19,10 @@ import java.util.List;
 
 public interface ExerciseSessionRepository extends JpaRepository<ExerciseSession, String> {
 
-    @Query("select e from ExerciseSession e where e.coach = :coachId and e.exerciseDay in :exerciseDays ")
+    @Query("select e from ExerciseSession e where e.coach = :coachId and e.exerciseDay in :exerciseDays")
     List<ExerciseSession> findByCoachAndExerciseDayIn(@Param("coachId") Coach coachId,
                                                       @Param("exerciseDays") Collection<ExerciseDays> exerciseDays);
+
+    @Query("select e from ExerciseSession e where e.exerciseDay not in :exerciseDays")
+    List<ExerciseSession> findByExerciseDayIsNotIn(@Param("exerciseDays") Collection<ExerciseDays> exerciseDays);
 }
