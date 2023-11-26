@@ -13,6 +13,7 @@ import com.javaguru.gymservice.repositories.ExerciseSessionRepository;
 import com.javaguru.gymservice.service.TrainingSessionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -51,6 +52,7 @@ public class TrainingSessionServiceImpl implements TrainingSessionService {
     }
 
     @Override
+    @Cacheable(value = "sessionCount")
     public TrainingSessionCountResponse getTrainingSessionForOtherDaysThanWed() {
         List<ExerciseDays> daysList = List.of(ExerciseDays.SAT, ExerciseDays.WED);
         List<ExerciseSession> byExerciseDayIsNotIn = exerciseSessionRepository.findByExerciseDayIsNotIn(daysList);
