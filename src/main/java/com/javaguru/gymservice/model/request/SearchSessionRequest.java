@@ -18,9 +18,10 @@ import java.util.Arrays;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class WeekDayRequest implements Serializable {
+public class SearchSessionRequest implements Serializable {
 
     private static final long serialVersionUID = 2919923324991011979L;
+    private String coachName;
     private ExerciseDays [] weekDays;
 
     @Override

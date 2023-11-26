@@ -1,6 +1,6 @@
 package com.javaguru.gymservice.controllers;
 
-import com.javaguru.gymservice.model.request.WeekDayRequest;
+import com.javaguru.gymservice.model.request.SearchSessionRequest;
 import com.javaguru.gymservice.model.response.TrainingSessionCountResponse;
 import com.javaguru.gymservice.model.response.TrainingSessions;
 import com.javaguru.gymservice.service.TrainingSessionService;
@@ -36,11 +36,10 @@ public class TrainingSessionController {
         return new ResponseEntity<>(trainingSessionService.getAllTrainingSession(), HttpStatus.OK);
     }
 
-    @GetMapping("/{coachName}")
-    ResponseEntity<TrainingSessions> getAllTrainingSession(@PathVariable("coachName") String coachName,
-                                                           @Valid @RequestBody WeekDayRequest weekDayRequest){
+    @GetMapping("/search")
+    ResponseEntity<TrainingSessions> getAllTrainingSession(@Valid @RequestBody SearchSessionRequest searchSessionRequest){
         return new ResponseEntity<>(trainingSessionService
-                .getTrainingSessionForCoach(coachName, weekDayRequest), HttpStatus.OK);
+                .getTrainingSessionForCoach(searchSessionRequest), HttpStatus.OK);
     }
 
     @GetMapping("/count")
