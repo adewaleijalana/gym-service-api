@@ -6,6 +6,7 @@ import com.javaguru.gymservice.domain.ExerciseSession;
 import com.javaguru.gymservice.domain.Gym;
 import com.javaguru.gymservice.domain.Member;
 import com.javaguru.gymservice.model.request.SearchSessionRequest;
+import com.javaguru.gymservice.model.response.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,5 +57,35 @@ public class TestObjects {
                 .firstName("coach-01")
                 .email("coach-01@test.com")
                 .build();
+    }
+
+    public static TrainingSessions buildTrainingSessions(){
+
+        return TrainingSessions.builder()
+                .trainingSessions(buildListOfTrainingSessions())
+                .build();
+    }
+
+    public static List<SingleTrainingSession> buildListOfTrainingSessions(){
+        List<SingleTrainingSession> singleTrainingSessions = new ArrayList<>();
+        singleTrainingSessions.add(SingleTrainingSession.builder()
+                .trainingSession(TrainingSession.builder()
+                        .weekday("WED")
+                        .member(MemberResp.builder()
+                                .id("rerererer")
+                                .name("test-01")
+                                .build())
+                        .gym(GymResp.builder()
+                                .id("01")
+                                .name("test-gym")
+                                .build())
+                        .coach(CoachResp.builder()
+                                .id("aghdhklak")
+                                .name("test-coach")
+                                .build())
+                        .build())
+                .build());
+
+        return singleTrainingSessions;
     }
 }

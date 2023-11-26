@@ -1,8 +1,10 @@
 package com.javaguru.gymservice.service;
 
-import com.javaguru.gymservice.model.request.SearchSessionRequest;
+import com.javaguru.gymservice.constants.ExerciseDays;
 import com.javaguru.gymservice.model.response.TrainingSessionCountResponse;
 import com.javaguru.gymservice.model.response.TrainingSessions;
+
+import java.util.List;
 
 /**
  * @author: adewaleijalana
@@ -15,7 +17,7 @@ import com.javaguru.gymservice.model.response.TrainingSessions;
 public interface TrainingSessionService {
     TrainingSessions getAllTrainingSession();
 
-    TrainingSessions getTrainingSessionForCoach(SearchSessionRequest searchSessionRequest);
+    TrainingSessions getTrainingSessionForCoach(String coachName, List<ExerciseDays> weekDays);
 
     TrainingSessionCountResponse getTrainingSessionForOtherDaysThanWed();
 }

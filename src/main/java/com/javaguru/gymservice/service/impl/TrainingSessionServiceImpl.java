@@ -6,7 +6,6 @@ import com.javaguru.gymservice.constants.ExerciseDays;
 import com.javaguru.gymservice.domain.Coach;
 import com.javaguru.gymservice.domain.ExerciseSession;
 import com.javaguru.gymservice.exception.ModelNotFoundException;
-import com.javaguru.gymservice.model.request.SearchSessionRequest;
 import com.javaguru.gymservice.model.response.*;
 import com.javaguru.gymservice.repositories.CoachRepository;
 import com.javaguru.gymservice.repositories.ExerciseSessionRepository;
@@ -41,13 +40,13 @@ public class TrainingSessionServiceImpl implements TrainingSessionService {
     }
 
     @Override
-    public TrainingSessions getTrainingSessionForCoach(SearchSessionRequest searchSessionRequest) {
-        log.info("searchSessionRequest: {}", gson.toJson(searchSessionRequest));
-        Coach byId = coachRepository.findByFirstName(searchSessionRequest.getCoachName())
+    public TrainingSessions getTrainingSessionForCoach(String coachName, List<ExerciseDays> weekDays) {
+        log.info("coachName: {}", coachName);
+        Coach byId = coachRepository.findByFirstName(coachName)
                 .orElseThrow(() -> new ModelNotFoundException("Coach does not exist"));
 
         List<ExerciseSession> byCoachAndExerciseDayIn = exerciseSessionRepository
-                .findByCoachAndExerciseDayIn(byId, Arrays.asList(searchSessionRequest.getWeekDays()));
+                .findByCoachAndExerciseDayIn(byId, weekDays);
         return buildTrainingSessions(byCoachAndExerciseDayIn);
     }
 

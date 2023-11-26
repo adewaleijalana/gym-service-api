@@ -1,5 +1,6 @@
 package com.javaguru.gymservice.controllers;
 
+import com.javaguru.gymservice.constants.ExerciseDays;
 import com.javaguru.gymservice.model.request.SearchSessionRequest;
 import com.javaguru.gymservice.model.response.TrainingSessionCountResponse;
 import com.javaguru.gymservice.model.response.TrainingSessions;
@@ -14,6 +15,7 @@ import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 /**
  * @author: adewaleijalana
@@ -32,14 +34,16 @@ public class TrainingSessionController {
     private final TrainingSessionService trainingSessionService;
 
     @GetMapping()
-    ResponseEntity<TrainingSessions> getAllTrainingSession(){
+    public ResponseEntity<TrainingSessions> searchForTrainingSession(){
         return new ResponseEntity<>(trainingSessionService.getAllTrainingSession(), HttpStatus.OK);
     }
 
     @GetMapping("/search")
-    ResponseEntity<TrainingSessions> getAllTrainingSession(@Valid @RequestBody SearchSessionRequest searchSessionRequest){
+    public ResponseEntity<TrainingSessions> searchForTrainingSession(
+            @RequestParam("coachName") String coachName, @RequestParam List<ExerciseDays> values){
+        log.info("coach name: {}; days: {}", coachName, values);
         return new ResponseEntity<>(trainingSessionService
-                .getTrainingSessionForCoach(searchSessionRequest), HttpStatus.OK);
+                .getTrainingSessionForCoach(coachName, values), HttpStatus.OK);
     }
 
     @GetMapping("/count")

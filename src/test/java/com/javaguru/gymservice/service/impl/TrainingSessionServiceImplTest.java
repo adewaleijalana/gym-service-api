@@ -8,13 +8,13 @@ import com.javaguru.gymservice.model.request.SearchSessionRequest;
 import com.javaguru.gymservice.model.response.TrainingSessions;
 import com.javaguru.gymservice.repositories.CoachRepository;
 import com.javaguru.gymservice.repositories.ExerciseSessionRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,7 +61,8 @@ class TrainingSessionServiceImplTest {
 
         ModelNotFoundException modelNotFoundException = assertThrows(ModelNotFoundException.class, () -> {
             trainingSessionService
-                    .getTrainingSessionForCoach(searchSessionRequest);
+                    .getTrainingSessionForCoach(searchSessionRequest.getCoachName(),
+                            Arrays.asList(searchSessionRequest.getWeekDays()));
         });
 
         assertThat(modelNotFoundException.getArgumentSupplied())
@@ -76,7 +77,8 @@ class TrainingSessionServiceImplTest {
                 .willReturn(Optional.of(coach));
 
         TrainingSessions trainingSessionForCoach = trainingSessionService
-                .getTrainingSessionForCoach(searchSessionRequest);
+                .getTrainingSessionForCoach(searchSessionRequest.getCoachName(),
+                        Arrays.asList(searchSessionRequest.getWeekDays()));
 
         assertThat(trainingSessionForCoach).isNotNull();
     }
