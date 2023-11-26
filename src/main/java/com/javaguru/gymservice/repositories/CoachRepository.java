@@ -3,6 +3,8 @@ package com.javaguru.gymservice.repositories;
 import com.javaguru.gymservice.domain.Coach;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 /**
  * @author: adewaleijalana
  * @email: adewaleijalana@gmail.com
@@ -12,4 +14,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface CoachRepository extends JpaRepository<Coach, String> {
+
+    Optional<Coach> findByFirstName(String firstName);
 }

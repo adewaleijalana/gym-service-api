@@ -41,9 +41,9 @@ public class TrainingSessionServiceImpl implements TrainingSessionService {
     }
 
     @Override
-    public TrainingSessions getTrainingSessionForCoach(String coachId, WeekDayRequest weekDayRequest) {
-        log.info("coachId: {}; weekDayRequest: {}", coachId, gson.toJson(weekDayRequest));
-        Coach byId = coachRepository.findById(coachId)
+    public TrainingSessions getTrainingSessionForCoach(String coachName, WeekDayRequest weekDayRequest) {
+        log.info("coachId: {}; weekDayRequest: {}", coachName, gson.toJson(weekDayRequest));
+        Coach byId = coachRepository.findByFirstName(coachName)
                 .orElseThrow(() -> new ModelNotFoundException("Coach does not exist"));
 
         List<ExerciseSession> byCoachAndExerciseDayIn = exerciseSessionRepository

@@ -15,7 +15,7 @@ import com.javaguru.gymservice.model.response.TrainingSessions;
 public interface TrainingSessionService {
     TrainingSessions getAllTrainingSession();
 
-    TrainingSessions getTrainingSessionForCoach(String coachId, WeekDayRequest weekDayRequest);
+    TrainingSessions getTrainingSessionForCoach(String coachName, WeekDayRequest weekDayRequest);
 
     TrainingSessionCountResponse getTrainingSessionForOtherDaysThanWed();
 }

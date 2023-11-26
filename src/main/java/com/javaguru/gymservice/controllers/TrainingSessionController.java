@@ -36,11 +36,11 @@ public class TrainingSessionController {
         return new ResponseEntity<>(trainingSessionService.getAllTrainingSession(), HttpStatus.OK);
     }
 
-    @GetMapping("/{coachId}")
-    ResponseEntity<TrainingSessions> getAllTrainingSession(@PathVariable("coachId") String coachId,
+    @GetMapping("/{coachName}")
+    ResponseEntity<TrainingSessions> getAllTrainingSession(@PathVariable("coachName") String coachName,
                                                            @Valid @RequestBody WeekDayRequest weekDayRequest){
         return new ResponseEntity<>(trainingSessionService
-                .getTrainingSessionForCoach(coachId, weekDayRequest), HttpStatus.OK);
+                .getTrainingSessionForCoach(coachName, weekDayRequest), HttpStatus.OK);
     }
 
     @GetMapping("/count")
