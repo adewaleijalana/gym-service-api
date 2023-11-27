@@ -10,5 +10,5 @@
 
 # List of endpoints:
 - http://localhost:8585/api/training-session
-- http://localhost:8585/api/training-session/search?coachName=Coach-B&values=WED,SAT
+- http://localhost:8585/api/training-session/search?coachName=Coach-B&weekDays=WED,SAT
 - http://localhost:8585/api/training-session/count

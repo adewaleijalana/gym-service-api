@@ -40,10 +40,10 @@ public class TrainingSessionController {
 
     @GetMapping("/search")
     public ResponseEntity<TrainingSessions> searchForTrainingSession(
-            @RequestParam("coachName") String coachName, @RequestParam List<ExerciseDays> values){
-        log.info("coach name: {}; days: {}", coachName, values);
+            @RequestParam("coachName") String coachName, @RequestParam List<ExerciseDays> weekDays){
+        log.info("coach name: {}; days: {}", coachName, weekDays);
         return new ResponseEntity<>(trainingSessionService
-                .getTrainingSessionForCoach(coachName, values), HttpStatus.OK);
+                .getTrainingSessionForCoach(coachName, weekDays), HttpStatus.OK);
     }
 
     @GetMapping("/count")
