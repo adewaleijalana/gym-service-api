@@ -1,6 +1,7 @@
 package com.javaguru.gymservice.service;
 
 import com.javaguru.gymservice.constants.ExerciseDays;
+import com.javaguru.gymservice.exception.ModelNotFoundException;
 import com.javaguru.gymservice.model.response.TrainingSessionCountResponse;
 import com.javaguru.gymservice.model.response.TrainingSessions;
 
@@ -17,7 +18,7 @@ import java.util.List;
 public interface TrainingSessionService {
     TrainingSessions getAllTrainingSession();
 
-    TrainingSessions getTrainingSessionForCoach(String coachName, List<ExerciseDays> weekDays);
+    TrainingSessions getTrainingSessionForCoach(String coachName, List<ExerciseDays> weekDays) throws ModelNotFoundException;
 
     TrainingSessionCountResponse getTrainingSessionForOtherDaysThanWed();
 }

@@ -66,7 +66,7 @@ class TrainingSessionControllerTest {
         this.mockMvc
                 .perform(get("/api/training-session/search")
                 .param("coachName", searchSessionRequest.getCoachName())
-                .param("values", "WED"))
+                .param("weekDays", "WED"))
                 .andDo(print())
                 .andExpect(status().isOk());
 
